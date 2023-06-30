@@ -60,14 +60,11 @@ const WebGiViewer = forwardRef((props, ref) => {
     },
   }));
 
-  const memoizedScrollAnimation = useCallback(
-    (position, target, isMobile, onUpdate) => {
-      if (position && target && isMobile && onUpdate) {
-        scrollAnimation(position, target, isMobile, onUpdate);
-      }
-    },
-    []
-  );
+  const memoizedScrollAnimation = useCallback((position, target, onUpdate) => {
+    if (position && target && onUpdate) {
+      scrollAnimation(position, target, onUpdate);
+    }
+  }, []);
 
   const setupViewer = useCallback(async () => {
     // Initialize the viewer
@@ -122,7 +119,7 @@ const WebGiViewer = forwardRef((props, ref) => {
         needsUpdate = false;
       }
     });
-    memoizedScrollAnimation(position, target, isMobileOrTablet, onUpdate);
+    memoizedScrollAnimation(position, target, onUpdate);
   }, []);
 
   const handleExit = useCallback(() => {
@@ -132,9 +129,12 @@ const WebGiViewer = forwardRef((props, ref) => {
     viewer.scene.activeCamera.setCameraOptions({ controlsEnabled: false });
 
     gsap.to(positionRef, {
-      x: !isMobile ? 1.56 : 9.36,
-      y: !isMobile ? 5.0 : 10.95,
-      z: !isMobile ? 0.01 : 0.09,
+      // x: !isMobile ? 1.56 : 9.36,
+      // y: !isMobile ? 5.0 : 10.95,
+      // z: !isMobile ? 0.01 : 0.09,
+      x: 1.56,
+      y: 5.0,
+      z: 0.01,
       scrollTrigger: {
         trigger: ".display-section",
         start: "top bottom",
@@ -148,9 +148,12 @@ const WebGiViewer = forwardRef((props, ref) => {
       },
     });
     gsap.to(targetRef, {
-      x: !isMobile ? -0.55 : -1.62,
-      y: !isMobile ? 0.32 : 0.02,
-      z: !isMobile ? 0.0 : 0.06,
+      // x: !isMobile ? -0.55 : -1.62,
+      // y: !isMobile ? 0.32 : 0.02,
+      // z: !isMobile ? 0.0 : 0.06,
+      x: -0.55,
+      y: 0.32,
+      z: 0.0,
       scrollTrigger: {
         trigger: ".display-section",
         start: "top bottom",

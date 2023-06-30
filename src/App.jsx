@@ -15,7 +15,7 @@ function App() {
   console.log(webgiViewerRef);
   return (
     <div className="App">
-      {/* <Loader /> */}
+      <Loader />
       <div ref={contentRef} id="content">
         <Nav />
         <Jumbotron />
